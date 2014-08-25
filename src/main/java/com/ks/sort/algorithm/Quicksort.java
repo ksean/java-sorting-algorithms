@@ -2,7 +2,6 @@ package com.ks.sort.algorithm;
 
 import com.ks.sort.SortingAlgorithm;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Quicksort<E extends Comparable> implements SortingAlgorithm<E> {

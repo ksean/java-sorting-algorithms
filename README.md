@@ -1,4 +1,4 @@
-Sorting algorithms java implementation
+Sorting algorithms custom java implementation
 =========
 
 ### References: 
@@ -11,5 +11,8 @@ Bubble sort
 Quicksort
 * http://en.wikipedia.org/wiki/Quicksort
 
-Insert sort
+Insertion sort
 * http://en.wikipedia.org/wiki/Insertion_sort
+
+Selection sort
+* http://en.wikipedia.org/wiki/Selection_sort

@@ -1,7 +1,6 @@
 package com.ks.sort;
 
-import com.ks.sort.algorithm.Bubblesort;
-import com.ks.sort.algorithm.Quicksort;
+import com.ks.sort.algorithm.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +21,9 @@ public class SortingAlgorithmTest {
 
     private static final Collection<Object[]> SORTING_ALGORITHMS = Arrays.asList(
             new Object[]{new Bubblesort<Integer>()},
-            new Object[]{new Quicksort<Integer>()}
+            new Object[]{new Quicksort<Integer>()},
+            new Object[]{new Insertionsort<Integer>()},
+            new Object[]{new Selectionsort<Integer>()}
     );
 
     private final int LIST_SIZE = 100;
