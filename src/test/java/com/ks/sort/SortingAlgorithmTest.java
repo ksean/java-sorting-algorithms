@@ -20,8 +20,16 @@ public class SortingAlgorithmTest {
 
     public SortingAlgorithm<Integer> sortingAlgorithm;
 
+    private static final Collection<Object[]> SORTING_ALGORITHMS = Arrays.asList(
+            new Object[]{new Bubblesort<Integer>()},
+            new Object[]{new Quicksort<Integer>()}
+    );
+
+    private final int LIST_SIZE = 100;
+
     private List<Integer> preSortedList = new ArrayList<>();
     private List<Integer> unSortedList = new ArrayList<>();
+    private List<Integer> randomList = new ArrayList<>();
 
     public SortingAlgorithmTest(SortingAlgorithm<Integer> sortingAlgorithm) {
         this.sortingAlgorithm = sortingAlgorithm;
@@ -29,21 +37,34 @@ public class SortingAlgorithmTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> sortingAlgorithms() {
-        return Arrays.asList(
-                new Object[]{new Bubblesort<Integer>()},
-                new Object[]{new Quicksort<Integer>()}
-        );
+        return SORTING_ALGORITHMS;
     }
 
     @Before
     public void setup() {
-        preSortedList.add(1);
-        preSortedList.add(2);
-        preSortedList.add(3);
+        // Create sorted list and an inversely sorted list
+        for (int i = 0; i < LIST_SIZE; i++) {
+            preSortedList.add(i);
+            unSortedList.add(LIST_SIZE - i - 1);
+        }
 
-        unSortedList.add(3);
-        unSortedList.add(2);
-        unSortedList.add(1);
+        // Create a list and keep creating it until it doesn't match the sorted list
+        do {
+            // Copy the sorted list so random elements can be added to new list
+            List<Integer> temporaryList = new ArrayList<>(preSortedList);
+
+            // While the temporary list is non-empty
+            while (temporaryList.size() > 0) {
+                // Get a random index
+                int randomIndex = (int)(Math.random() * temporaryList.size());
+
+                // Add the value at the random index to the random list
+                randomList.add(temporaryList.get(randomIndex));
+
+                // Remove the value from the temporary list
+                temporaryList.remove(randomIndex);
+            }
+        } while (randomList == preSortedList);
     }
 
     @Test
@@ -84,6 +105,15 @@ public class SortingAlgorithmTest {
     public void sortUnsortedListReturnsSortedList() {
         // Actions
         List<Integer> sortedList = sortingAlgorithm.sort(unSortedList);
+
+        // Assertions
+        assertEquals(preSortedList, sortedList);
+    }
+
+    @Test
+    public void sortRandomListReturnsSortedList() {
+        // Actions
+        List<Integer> sortedList = sortingAlgorithm.sort(randomList);
 
         // Assertions
         assertEquals(preSortedList, sortedList);
