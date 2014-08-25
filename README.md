@@ -2,7 +2,7 @@ Sorting algorithms java implementation
 =========
 
 ### References: 
-Sorting algorithms
+#### Sorting algorithms
 * http://en.wikipedia.org/wiki/Sorting_algorithm
 
 Bubble sort
@@ -10,3 +10,6 @@ Bubble sort
 
 Quicksort
 * http://en.wikipedia.org/wiki/Quicksort
+
+Insert sort
+* http://en.wikipedia.org/wiki/Insertion_sort
